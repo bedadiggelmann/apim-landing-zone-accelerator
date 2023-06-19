@@ -47,7 +47,7 @@ jobs:
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
-          terraform init -backend-config="$(BACKEND_FILE)"
+          terraform init -backend-config="/reference-implementations/AppGW-IAPIM-Func/$(BACKEND_FILE)"
       displayName: 'Terraform Init'
 
     - task: AzureCLI@2
@@ -65,7 +65,7 @@ jobs:
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
-          terraform plan -var-file="$(VARIABLES_FILE)"
+          terraform plan -var-file="/reference-implementations/AppGW-IAPIM-Func/$(VARIABLES_FILE)"
       displayName: 'Terraform Plan'
 
     - task: AzureCLI@2
@@ -74,5 +74,5 @@ jobs:
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
-          terraform apply -var-file="$(VARIABLES_FILE)" -auto-approve
+          terraform apply -var-file="/reference-implementations/AppGW-IAPIM-Func/$(VARIABLES_FILE)" -auto-approve
       displayName: 'Terraform Apply'
