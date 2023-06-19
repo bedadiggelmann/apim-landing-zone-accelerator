@@ -38,7 +38,7 @@ variable "copy_paste_enabled" {
   description = "Is Copy/Paste feature enabled for the Bastion Host. Defaults to true."
   default     = true
 }
-
+/*
 variable "jumpbox_subnet_id" {
   description = "Subnet id of the bastion host"
 }
@@ -76,7 +76,7 @@ variable "pool_name" {
   type        = string
   description = "The name Azure DevOps or GitHub pool for this build agent to join. Use 'Default' if you don't have a separate pool"
 }
-
+*/
 variable "private_ip_address" {
   description = "Private ip address of the apim instance"
 }
@@ -84,7 +84,7 @@ variable "private_ip_address" {
 variable "apim_name" {
   description = "Resource name of the deployed internal apim instance"
 }
-
+/*
 variable "apim_vnet_id" {
   description = "APIM vnet id"
 }
@@ -94,3 +94,5 @@ variable "additional_client_ids" {
   type        = list(string)
   default     = []
 }
+*/
+

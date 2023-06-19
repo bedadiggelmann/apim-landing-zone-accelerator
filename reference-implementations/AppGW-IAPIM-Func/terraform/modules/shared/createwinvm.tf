@@ -1,3 +1,4 @@
+/*
 #-------------------------------
 # Deploy CI/CD agent if required
 #-------------------------------
@@ -57,3 +58,4 @@ resource "azurerm_virtual_machine_extension" "deploy_agent" {
     }
 SETTINGS
 }
+*/

@@ -4,7 +4,7 @@ Developer portal	        contosointernalvnet.portal.azure-api.net
 The new developer portal	contosointernalvnet.developer.azure-api.net
 Direct management endpoint	contosointernalvnet.management.azure-api.net
 Git	                        contosointernalvnet.scm.azure-api.net */
-
+/*
 #-------------------------------
 # DNS zones 
 #-------------------------------
@@ -113,3 +113,4 @@ resource "azurerm_private_dns_zone_virtual_network_link" "scm_vnetlink" {
   private_dns_zone_name = azurerm_private_dns_zone.scm.name
   virtual_network_id    = var.apim_vnet_id
 }
+*/

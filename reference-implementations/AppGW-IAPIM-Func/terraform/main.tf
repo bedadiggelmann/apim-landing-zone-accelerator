@@ -17,25 +17,26 @@ module "resource_suffix" {
 # calling the Shared module
 #-------------------------------
 module "shared" {
-  source                = "./modules/shared"
-  resource_suffix       = module.resource_suffix.name
-  location              = local.resource_location
-  environment           = var.deployment_environment
-  jumpbox_subnet_id     = module.networking.jumpbox_subnet_id
-  cicd_agent_subnet_id  = module.networking.cicd_agent_subnet_id
-  cicd_agent_type       = var.cicd_agent_type
-  personal_access_token = var.personal_access_token
-  account_name          = var.account_name
-  pool_name             = var.pool_name
-  private_ip_address    = module.apim.private_ip_addresses
-  apim_name             = module.apim.name
-  apim_vnet_id          = module.networking.apim_cs_vnet_id
-  vm_username           = var.vm_username
-  vm_password           = var.vm_password
+  source          = "./modules/shared"
+  resource_suffix = module.resource_suffix.name
+  location        = local.resource_location
+  environment     = var.deployment_environment
+  # jumpbox_subnet_id     = module.networking.jumpbox_subnet_id
+  # cicd_agent_subnet_id  = module.networking.cicd_agent_subnet_id
+  # cicd_agent_type       = var.cicd_agent_type
+  # personal_access_token = var.personal_access_token
+  # account_name          = var.account_name
+  # pool_name             = var.pool_name
+  private_ip_address = module.apim.private_ip_addresses
+  apim_name          = module.apim.name
+  # apim_vnet_id          = module.networking.apim_cs_vnet_id
+  # vm_username = var.vm_username
+  # vm_password = var.vm_password
 
-  additional_client_ids = var.cicd_spn_client_id != null ? [var.cicd_spn_client_id] : []
+  # additional_client_ids = var.cicd_spn_client_id != null ? [var.cicd_spn_client_id] : []
 }
 
+/*
 #-------------------------------
 # calling the Network module
 #-------------------------------
@@ -45,6 +46,7 @@ module "networking" {
   workload_name          = var.workload_name
   deployment_environment = var.deployment_environment
 }
+*/
 
 #-------------------------------
 # calling the APIM module
@@ -55,9 +57,10 @@ module "apim" {
   location            = local.resource_location
   workspace_id        = module.shared.workspace_id
   instrumentation_key = module.shared.instrumentation_key
-  apim_subnet_id      = module.networking.apim_subnet_id
+  # apim_subnet_id      = module.networking.apim_subnet_id
 }
 
+/*
 #-------------------------------
 # calling the App Gateway module
 #-------------------------------
@@ -79,14 +82,16 @@ module "application_gateway" {
     module.shared
   ]
 }
-
+*/
+/*
 #-------------------------------
 # calling the Backend module
 #-------------------------------
 module "backend" {
-  source            = "./modules/backend"
-  resource_suffix   = module.resource_suffix.name
-  workload_name     = var.workload_name
-  location          = local.resource_location
-  backend_subnet_id = module.networking.backend_subnet_id
+  source          = "./modules/backend"
+  resource_suffix = module.resource_suffix.name
+  workload_name   = var.workload_name
+  location        = local.resource_location
+  # backend_subnet_id = module.networking.backend_subnet_id
 }
+*/

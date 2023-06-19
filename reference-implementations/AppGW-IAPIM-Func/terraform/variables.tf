@@ -1,7 +1,7 @@
 variable "workload_name" {
   type        = string
   description = "A short name for the workload being deployed"
-  default     = "proy"
+  default     = "apimtest"
   validation {
     condition = (
       can(regex("^[a-zA-Z0-9]{3,8}$", var.workload_name))
@@ -24,11 +24,11 @@ variable "deployment_environment" {
 variable "location" {
   type        = string
   description = "The location in which the deployment is happening"
-  default     = "East US"
+  default     = "West Europe"
   validation {
     condition = anytrue([
-      var.location == "East US",
-      var.location == "West US"
+      var.location == "West Europe",
+      var.location == "North Europe"
     ])
     error_message = "Please enter a valid Azure Region."
   }
@@ -43,13 +43,13 @@ variable "resource_suffix" {
 variable "apim_name" {
   type        = string
   description = ""
-  default     = "apim.contoso.com"
+  default     = "apim.ipt.ch"
 }
 
 variable "app_gateway_fqdn" {
   type        = string
   description = ""
-  default     = "api.contoso.com"
+  default     = "api.ipt.ch"
 }
 
 variable "certificate_path" {
@@ -80,7 +80,7 @@ variable "app_gateway_certificate_type" {
     error_message = "Valid values for var: app_gateway_certificate_type are (custom, selfsigned)."
   }
 }
-
+/*
 # Backend resource variables
 variable "vm_username" {
   type        = string
@@ -126,3 +126,4 @@ variable "cicd_spn_client_id" {
   type        = string
   default     = null
 }
+*/

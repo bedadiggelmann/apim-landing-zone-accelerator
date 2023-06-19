@@ -31,8 +31,8 @@ No modules.
 | <a name="input_apim_subnet_id"></a> [apim\_subnet\_id](#input\_apim\_subnet\_id) | The subnet id of the apim instance | `string` | n/a | yes |
 | <a name="input_instrumentation_key"></a> [instrumentation\_key](#input\_instrumentation\_key) | App insights instrumentation key | `string` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | The location of the apim instance | `string` | `""` | no |
-| <a name="input_publisher_email"></a> [publisher\_email](#input\_publisher\_email) | The email of the publisher/company | `string` | `"apim@contoso.com"` | no |
-| <a name="input_publisher_name"></a> [publisher\_name](#input\_publisher\_name) | The name of the publisher/company | `string` | `"Contoso"` | no |
+| <a name="input_publisher_email"></a> [publisher\_email](#input\_publisher\_email) | The email of the publisher/company | `string` | `"apim@ipt.com"` | no |
+| <a name="input_publisher_name"></a> [publisher\_name](#input\_publisher\_name) | The name of the publisher/company | `string` | `"IPT"` | no |
 | <a name="input_resource_suffix"></a> [resource\_suffix](#input\_resource\_suffix) | ------------------------------- Common variables ------------------------------- | `string` | n/a | yes |
 | <a name="input_sku_name"></a> [sku\_name](#input\_sku\_name) | String consisting of two parts separated by an underscore(\_). The first part is the name, valid values include: Consumption, Developer, Basic, Standard and Premium. The second part is the capacity (e.g. the number of deployed units of the sku), which must be a positive integer (e.g. Developer\_1) | `string` | `"Developer_1"` | no |
 | <a name="input_workspace_id"></a> [workspace\_id](#input\_workspace\_id) | The workspace id of the log analytics workspace | `string` | n/a | yes |

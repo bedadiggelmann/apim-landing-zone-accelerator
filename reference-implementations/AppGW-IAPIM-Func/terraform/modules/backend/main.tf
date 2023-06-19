@@ -66,10 +66,11 @@ resource "azurerm_linux_function_app" "function_app" {
     application_stack {
       dotnet_version = "3.1"
     }
-
+    /*
     ip_restriction {
       virtual_network_subnet_id = var.backend_subnet_id
     }
+    */
   }
 
   lifecycle {
@@ -108,10 +109,11 @@ resource "azurerm_linux_function_app" "function_app_container" {
         image_tag    = "latest"
       }
     }
-
+    /*
     ip_restriction {
       virtual_network_subnet_id = var.backend_subnet_id
     }
+    */
   }
 
   lifecycle {

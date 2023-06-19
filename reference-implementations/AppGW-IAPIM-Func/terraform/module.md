@@ -31,9 +31,9 @@ No resources.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_account_name"></a> [account\_name](#input\_account\_name) | The Azure DevOps or GitHub account name to be used when configuring the CI/CD agent, in the format https://dev.azure.com/ORGNAME OR github.com/ORGUSERNAME OR none | `string` | n/a | yes |
-| <a name="input_apim_name"></a> [apim\_name](#input\_apim\_name) | n/a | `string` | `"apim.contoso.com"` | no |
+| <a name="input_apim_name"></a> [apim\_name](#input\_apim\_name) | n/a | `string` | `"apim.ipt.ch"` | no |
 | <a name="input_app_gateway_certificate_type"></a> [app\_gateway\_certificate\_type](#input\_app\_gateway\_certificate\_type) | The certificate type used for the app gateway. Either custom or selfsigned | `string` | `"custom"` | no |
-| <a name="input_app_gateway_fqdn"></a> [app\_gateway\_fqdn](#input\_app\_gateway\_fqdn) | n/a | `string` | `"api.contoso.com"` | no |
+| <a name="input_app_gateway_fqdn"></a> [app\_gateway\_fqdn](#input\_app\_gateway\_fqdn) | n/a | `string` | `"api.ipt.ch"` | no |
 | <a name="input_certificate_password"></a> [certificate\_password](#input\_certificate\_password) | n/a | `string` | `null` | no |
 | <a name="input_certificate_path"></a> [certificate\_path](#input\_certificate\_path) | n/a | `string` | `null` | no |
 | <a name="input_certificate_secret_name"></a> [certificate\_secret\_name](#input\_certificate\_secret\_name) | n/a | `string` | `null` | no |

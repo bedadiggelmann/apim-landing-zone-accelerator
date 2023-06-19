@@ -18,13 +18,13 @@ variable "location" {
 variable "publisher_name" {
   description = "The name of the publisher/company"
   type        = string
-  default     = "Contoso"
+  default     = "IPT"
 }
 
 variable "publisher_email" {
   description = "The email of the publisher/company; shows as administrator email in APIM"
   type        = string
-  default     = "apim@contoso.com"
+  default     = "beda.diggelmann@ipt.ch"
 }
 
 variable "sku_name" {
@@ -32,11 +32,12 @@ variable "sku_name" {
   type        = string
   default     = "Developer_1"
 }
-
+/*
 variable "apim_subnet_id" {
   description = "The subnet id of the apim instance"
   type        = string
 }
+*/
 
 variable "workspace_id" {
   type        = string

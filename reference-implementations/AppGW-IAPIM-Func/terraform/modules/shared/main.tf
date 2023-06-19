@@ -19,7 +19,7 @@ resource "azurerm_log_analytics_workspace" "log_analytics_workspace" {
 }
 
 #-------------------------------
-# Creation of an application inisight instance
+# Creation of an application insight instance
 #-------------------------------
 
 resource "azurerm_application_insights" "shared_apim_insight" {
@@ -49,10 +49,11 @@ locals {
   deployment_client_ids = toset(
     concat(
       [data.azurerm_client_config.current.object_id],
-      var.additional_client_ids
+      # var.additional_client_ids
     )
   )
 }
+
 
 # created as a seperate resource, as managed identity uses the azurerm_key_vault_access_policy as well. See note at https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy
 resource "azurerm_key_vault_access_policy" "deployment_spn_access_policy" {
