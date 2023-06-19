@@ -15,7 +15,6 @@ terraform {
     resource_group_name  = "rg-apim-eslz-terraform-backend"
     storage_account_name = "stapimeslz"
     container_name       = "terraformbackend"
-    access_key           = "oYYQd/chBchoaMX0U1m+QOCmqRXyiF2EDYi5KWDjsQkYUrnUMx368soDtu/iMabiCULWWC9mMq7G+AStHIa3Mg=="
   }
   required_providers {
     azurerm = {
