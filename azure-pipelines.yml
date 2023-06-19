@@ -1,15 +1,15 @@
 parameters:
-  - name: environment
+  - name: deployment_environment
     displayName: Environment
     values:
       - DEV
-      - PROD
+      - UAT
 
 variables:
   - group: APIM_AUTOMATION
-  - ${{ if eq(parameters.environment, 'DEV') }}:
+  - ${{ if eq(parameters.deployment_environment, 'DEV') }}:
       - group: DEV_SETTINGS
-  - ${{ if eq(parameters.environment, 'PROD') }}:
+  - ${{ if eq(parameters.deployment_environment, 'UAT') }}:
       - group: PROD_SETTINGS
 
 jobs:
