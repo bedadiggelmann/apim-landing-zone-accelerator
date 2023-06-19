@@ -1,7 +1,7 @@
 variable "workload_name" {
   type        = string
   description = "A short name for the workload being deployed"
-  default     = "apimtest"
+  default     = "test"
   validation {
     condition = (
       can(regex("^[a-zA-Z0-9]{3,8}$", var.workload_name))
