@@ -46,6 +46,7 @@ jobs:
         azureSubscription: $(SERVICE_CONNECTION_AZURE)
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
+        workingDirectory: '$(Build.Repository.LocalPath)'
         inlineScript: |
           terraform init -backend-config="apim-landing-zone-accelerator/reference-implementations/AppGW-IAPIM-Func/terraform/$(BACKEND_FILE)"
       displayName: 'Terraform Init'
@@ -64,6 +65,7 @@ jobs:
         azureSubscription: $(SERVICE_CONNECTION_AZURE)
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
+        workingDirectory: '$(Build.Repository.LocalPath)'
         inlineScript: |
           terraform plan -var-file="apim-landing-zone-accelerator/reference-implementations/AppGW-IAPIM-Func/terraform/$(VARIABLES_FILE)"
       displayName: 'Terraform Plan'
@@ -73,6 +75,7 @@ jobs:
         azureSubscription: $(SERVICE_CONNECTION_AZURE)
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
+        workingDirectory: '$(Build.Repository.LocalPath)'
         inlineScript: |
           terraform apply -var-file="apim-landing-zone-accelerator/reference-implementations/AppGW-IAPIM-Func/terraform/$(VARIABLES_FILE)" -auto-approve
       displayName: 'Terraform Apply'
