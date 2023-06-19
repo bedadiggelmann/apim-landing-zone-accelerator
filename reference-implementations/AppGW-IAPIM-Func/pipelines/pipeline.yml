@@ -19,8 +19,8 @@ resources:
   repositories:
   - repository: apimeslz
     type: github
-    name: cykreng/Enterprise-Scale-APIM
-    endpoint: <Github service connection name>
+    name: bedadiggelmann/apim-landing-zone-accelerator
+    endpoint: bedadiggelmann
 
 stages:
   - stage: retrieve_template_from_github_and_publish
