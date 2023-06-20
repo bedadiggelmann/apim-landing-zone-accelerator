@@ -8,9 +8,9 @@ parameters:
 variables:
   - group: APIM_AUTOMATION
   - ${{ if eq(parameters.deployment_environment, 'DEV') }}:
-      - group: DEV_SETTINGS
+      - group: DEV_SETTINGS_ESLZ
   - ${{ if eq(parameters.deployment_environment, 'UAT') }}:
-      - group: PROD_SETTINGS
+      - group: UAT_SETTINGS
 
 jobs:
 - job: APIM_IAC
