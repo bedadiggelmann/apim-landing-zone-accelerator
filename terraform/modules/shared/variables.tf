@@ -1,6 +1,7 @@
 #-------------------------------
 # Common variables
 #-------------------------------
+
 variable "resource_suffix" {
   type = string
 }
@@ -38,45 +39,7 @@ variable "copy_paste_enabled" {
   description = "Is Copy/Paste feature enabled for the Bastion Host. Defaults to true."
   default     = true
 }
-/*
-variable "jumpbox_subnet_id" {
-  description = "Subnet id of the bastion host"
-}
 
-variable "cicd_agent_subnet_id" {
-  description = "Subnet id of the ci/cd agent"
-}
-
-variable "vm_username" {
-  description = "Agent VM username"
-  type        = string
-}
-
-variable "vm_password" {
-  description = "Agent VM Password"
-  type        = string
-}
-
-variable "cicd_agent_type" {
-  type        = string
-  description = "The CI/CD platform to be used, and for which an agent will be configured for the ASE deployment. Specify 'none' if no agent needed"
-}
-
-variable "personal_access_token" {
-  type        = string
-  description = "Azure DevOps or GitHub personal access token (PAT) used to setup the CI/CD agent"
-}
-
-variable "account_name" {
-  type        = string
-  description = "'The Azure DevOps or GitHub account name to be used when configuring the CI/CD agent, in the format https://dev.azure.com/ORGNAME OR github.com/ORGUSERNAME OR none'"
-}
-
-variable "pool_name" {
-  type        = string
-  description = "The name Azure DevOps or GitHub pool for this build agent to join. Use 'Default' if you don't have a separate pool"
-}
-*/
 variable "private_ip_address" {
   description = "Private ip address of the apim instance"
 }
@@ -84,15 +47,3 @@ variable "private_ip_address" {
 variable "apim_name" {
   description = "Resource name of the deployed internal apim instance"
 }
-/*
-variable "apim_vnet_id" {
-  description = "APIM vnet id"
-}
-
-variable "additional_client_ids" {
-  description = "List of additional clients to add to the Key Vault access policy."
-  type        = list(string)
-  default     = []
-}
-*/
-

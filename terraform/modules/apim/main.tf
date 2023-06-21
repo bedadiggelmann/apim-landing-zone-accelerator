@@ -15,14 +15,8 @@ resource "azurerm_api_management" "apim_internal" {
   resource_group_name = azurerm_resource_group.apim_internal_rg.name
   publisher_name      = var.publisher_name
   publisher_email     = var.publisher_email
-  #  virtual_network_type = "Internal"
 
   sku_name = var.sku_name
-  /*
-  virtual_network_configuration {
-    subnet_id = var.apim_subnet_id
-  }
-  */
   identity {
     type = "SystemAssigned"
   }

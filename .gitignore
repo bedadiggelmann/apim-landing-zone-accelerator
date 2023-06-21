@@ -23,7 +23,7 @@ crash.*.log
 # control as they are data points which are potentially sensitive and subject
 # to change depending on the environment.
 
-# For now we exclude only terraform.tfvars and terraform.tfvars.json and not the env-tfvars (terraform.dev.tfvars etc.)
+# For now we exclude only terraform.tfvars and terraform.tfvars.json but not the env-tfvars (terraform.dev.tfvars etc.)
 terraform.tfvars
 terraform.tfvars.json
 
@@ -46,9 +46,6 @@ terraform.rc
 
 # Don't copy local lock
 *.terraform.lock.hcl
-
-# Azure Functions localsettings file
-local.settings.json
 
 # User-specific files
 *.suo

@@ -1,6 +1,7 @@
 #-------------------------------
 # Common variables
 #-------------------------------
+
 variable "resource_suffix" {
   description = ""
   type        = string
@@ -15,6 +16,7 @@ variable "location" {
 #-------------------------------
 # APIM specific variables
 #-------------------------------
+
 variable "publisher_name" {
   description = "The name of the publisher/company"
   type        = string
@@ -32,12 +34,6 @@ variable "sku_name" {
   type        = string
   default     = "Developer_1"
 }
-/*
-variable "apim_subnet_id" {
-  description = "The subnet id of the apim instance"
-  type        = string
-}
-*/
 
 variable "workspace_id" {
   type        = string

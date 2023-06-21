@@ -1,6 +1,7 @@
 {
   "recommendations": [
-    "ms-azuretools.vscode-azurefunctions",
-    "ms-dotnettools.csharp"
+    "hashicorp.terraform",
+    "run-at-scale.terraform-doc-snippets",
+    "ms-vscode.azure-account",
   ]
 }
