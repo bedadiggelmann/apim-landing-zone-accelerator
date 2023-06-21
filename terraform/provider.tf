@@ -1,17 +1,6 @@
 terraform {
 
   backend "azurerm" {
-    # ----------------------
-    # Will be passing in these arguments via CLI as the state file \
-    #  is now being overwritten via local testing environments
-    # > https://developer.hashicorp.com/terraform/language/settings/backends/configuration#command-line-key-value-pairs
-    # ----------------------
-    # e.g: terraform init \
-    #        -backend-config="resource_group_name=rg-terraform"     \
-    #        -backend-config="storage_account_name=apimlztfbackend" \
-    #        -backend-config="container_name=terraform-state"       \
-    #        -backend-config="key=es-apim-lza.tfstate"
-    # ----------------------
     resource_group_name  = "rg-apim-eslz-terraform-backend"
     storage_account_name = "stapimeslz"
     container_name       = "terraformbackend"
@@ -24,10 +13,9 @@ terraform {
   }
 }
 
-# Configure the Microsft Azure provider
+# Configure the Microsft Azure provider (Service Principal)
 provider "azurerm" {
   features {}
-
   # subscription_id = var.subscription_id
   # client_id       = var.client_id
   # client_secret   = var.client_secret
