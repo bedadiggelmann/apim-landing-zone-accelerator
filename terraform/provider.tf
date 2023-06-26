@@ -4,6 +4,7 @@ terraform {
     resource_group_name  = "rg-apim-eslz-terraform-backend"
     storage_account_name = "stapimeslz"
     container_name       = "terraform"
+    key                  = "terraform.tfstate"
   }
   required_providers {
     azurerm = {
