@@ -3,7 +3,7 @@ terraform {
   backend "azurerm" {
     resource_group_name  = "rg-apim-eslz-terraform-backend"
     storage_account_name = "stapimeslz"
-    container_name       = "terraformbackend"
+    container_name       = "terraform"
   }
   required_providers {
     azurerm = {
