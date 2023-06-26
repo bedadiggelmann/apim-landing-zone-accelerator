@@ -5,6 +5,10 @@
 resource "azurerm_resource_group" "shared_rg" {
   name     = "rg-shared-${var.resource_suffix}"
   location = var.location
+
+  tags = {
+    "expireOn" = "2023-07-30"
+  }
 }
 
 #-------------------------------
