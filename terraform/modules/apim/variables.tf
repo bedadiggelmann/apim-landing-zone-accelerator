@@ -35,6 +35,17 @@ variable "sku_name" {
   default     = "Developer_1"
 }
 
+variable "apim_subnet_id" {
+  description = "The subnet id of the apim instance"
+  type        = string
+}
+
+variable "apim_public_ip_id" {
+  description = "The public_ip id of the public ip"
+  type        = string
+}
+
+/*
 variable "workspace_id" {
   type        = string
   description = "The workspace id of the log analytics workspace"
@@ -44,3 +55,4 @@ variable "instrumentation_key" {
   type        = string
   description = "App insights instrumentation key"
 }
+*/
