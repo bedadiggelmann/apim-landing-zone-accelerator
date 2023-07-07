@@ -32,7 +32,7 @@ resource "azurerm_virtual_network" "apim_cs_vnet" {
 }
 
 resource "azurerm_virtual_network" "apim_gw_vnet" {
-  name                = local.apim_cs_vnet_name
+  name                = local.apim_gw_vnet_name
   location            = azurerm_resource_group.networking_resource_group.location
   resource_group_name = azurerm_resource_group.networking_resource_group.name
   address_space       = [var.apim_gw_vnet_name_address_prefix]
