@@ -19,14 +19,22 @@ resource "azurerm_api_management" "apim_internal" {
   resource_group_name = azurerm_resource_group.apim_internal_rg.name
   publisher_name      = var.publisher_name
   publisher_email     = var.publisher_email
+  virtual_network_type = "Internal"
+  public_ip_address_id = var.apim_public_ip_id
 
   sku_name = var.sku_name
+
+  virtual_network_configuration {
+    subnet_id = var.apim_subnet_id
+  }
+
   identity {
     type = "SystemAssigned"
   }
 }
 
 
+/*
 #-------------------------------
 # Creation of the apim logger entity
 #-------------------------------
@@ -41,6 +49,7 @@ resource "azurerm_api_management_logger" "apim_logger" {
     instrumentation_key = var.instrumentation_key
   }
 }
+
 
 #-------------------------------
 # API management service diagnostic
@@ -91,4 +100,6 @@ resource "azurerm_api_management_diagnostic" "apim_diagnostic" {
       "origin",
     ]
   }
+
 }
+*/

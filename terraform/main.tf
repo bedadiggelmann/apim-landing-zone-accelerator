@@ -23,16 +23,49 @@ module "shared" {
   environment        = var.deployment_environment
   private_ip_address = module.apim.private_ip_addresses
   apim_name          = module.apim.name
+  apim_vnet_id       = module.networking.apim_cs_vnet_id
 }
 
 #-------------------------------
 # calling the APIM module
 #-------------------------------
 module "apim" {
-  source              = "./modules/apim"
-  resource_suffix     = module.resource_suffix.name
-  location            = local.resource_location
-  workspace_id        = module.shared.workspace_id
-  instrumentation_key = module.shared.instrumentation_key
+  source            = "./modules/apim"
+  resource_suffix   = module.resource_suffix.name
+  location          = local.resource_location
+  apim_subnet_id    = module.networking.apim_subnet_id
+  apim_public_ip_id = module.networking.public_ip
 }
 
+
+#-------------------------------
+# calling the networking module
+#-------------------------------
+module "networking" {
+  source                 = "./modules/networking"
+  location               = local.resource_location
+  workload_name          = var.workload_name
+  deployment_environment = var.deployment_environment
+}
+
+#-------------------------------
+# calling the App Gateway module
+#-------------------------------
+module "application_gateway" {
+  source                       = "./modules/gateway"
+  resource_suffix              = var.resource_suffix
+  resource_group_name          = module.apim.apim_resource_group_name
+  resource_group_location      = module.apim.apim_resource_group_location
+  secret_name                  = var.certificate_secret_name
+  keyvault_id                  = module.shared.key_vault_id
+  app_gateway_certificate_type = var.app_gateway_certificate_type
+  certificate_path             = var.certificate_path
+  certificate_password         = var.certificate_password
+  fqdn                         = var.app_gateway_fqdn
+  primary_backendend_fqdn      = "${module.apim.name}.azure-api.net"
+  subnet_id                    = module.networking.appgateway_subnet_id
+
+  depends_on = [
+    module.shared
+  ]
+}
