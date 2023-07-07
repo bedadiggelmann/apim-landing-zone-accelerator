@@ -62,7 +62,7 @@ module "application_gateway" {
   certificate_path             = var.certificate_path
   certificate_password         = var.certificate_password
   fqdn                         = var.app_gateway_fqdn
-  primary_backendend_fqdn      = "${module.apim.name}.azure-api.net"
+  primary_backend_fqdn         = "${module.apim.name}.azure-api.net"
   subnet_id                    = module.networking.appgateway_subnet_id
 
   depends_on = [

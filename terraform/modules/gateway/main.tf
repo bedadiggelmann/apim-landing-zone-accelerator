@@ -181,7 +181,7 @@ resource "azurerm_application_gateway" "network" {
     port                                = 443
     protocol                            = "Https"
     cookie_based_affinity               = "Disabled"
-    host_name                           = var.primary_backendend_fqdn
+    host_name                           = var.primary_backend_fqdn
     pick_host_name_from_backend_address = false
     request_timeout                     = 20
     probe_name                          = local.https_backend_probe_name
@@ -216,7 +216,7 @@ resource "azurerm_application_gateway" "network" {
   probe {
     name                                      = "APIM"
     protocol                                  = "Https"
-    host                                      = var.primary_backendend_fqdn
+    host                                      = var.primary_backend_fqdn
     path                                      = var.probe_url
     interval                                  = 30
     timeout                                   = 30

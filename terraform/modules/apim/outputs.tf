@@ -20,10 +20,10 @@ output "apim_resource_group_location" {
 
 output "name" {
   description = "The name of the apim instance"
-  value       = azurerm_api_management.apim_internal
+  value       = azurerm_api_management.apim_internal.name
 }
 
 output "private_ip_addresses" {
-  description = "Used to connect from within the network to AP
+  description = "Used to connect from within the network to AP"
   value       = azurerm_api_management.apim_internal.private_ip_addresses
 }

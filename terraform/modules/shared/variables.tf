@@ -45,6 +45,7 @@ variable "private_ip_address" {
 }
 
 variable "apim_name" {
+  type        = string
   description = "Resource name of the deployed internal apim instance"
 }
 
