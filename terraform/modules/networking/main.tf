@@ -1,14 +1,14 @@
 locals {
-  resource_suffix                = "${var.workload_name}-${var.deployment_environment}-${var.location}"
-  resource_suffix_id             = "001"
-  resource_group_name            = "rg-networking-${local.resource_suffix}"
-  apim_cs_vnet_name              = "vnet-apim-cs-${local.resource_suffix}"
-  apim_gw_vnet_name              = "vnet-apim-gw-${local.resource_suffix}"
-  apim_subnet_name               = "snet-apim-${local.resource_suffix}-${local.resource_suffix_id}"
-  apim_snnsg                     = "nsg-apim-${local.resource_suffix}"
-  appgateway_subnet_name         = "snet-apgw-${local.resource_suffix}-${local.resource_suffix_id}"
-  appgateway_snnsg               = "nsg-apgw-${local.resource_suffix}"
-  public_ip_address_name         = "pip-apimcs-${local.resource_suffix}"
+  resource_suffix        = "${var.workload_name}-${var.deployment_environment}-${var.location}"
+  resource_suffix_id     = "001"
+  resource_group_name    = "rg-networking-${local.resource_suffix}"
+  apim_cs_vnet_name      = "vnet-apim-cs-${local.resource_suffix}"
+  apim_gw_vnet_name      = "vnet-apim-gw-${local.resource_suffix}"
+  apim_subnet_name       = "snet-apim-${local.resource_suffix}-${local.resource_suffix_id}"
+  apim_snnsg             = "nsg-apim-${local.resource_suffix}"
+  appgateway_subnet_name = "snet-apgw-${local.resource_suffix}-${local.resource_suffix_id}"
+  appgateway_snnsg       = "nsg-apgw-${local.resource_suffix}"
+  public_ip_address_name = "pip-apimcs-${local.resource_suffix}"
 }
 
 resource "azurerm_resource_group" "networking_resource_group" {
@@ -184,4 +184,5 @@ resource "azurerm_public_ip" "apim_public_ip" {
   resource_group_name = azurerm_resource_group.networking_resource_group.name
   location            = azurerm_resource_group.networking_resource_group.location
   allocation_method   = "Static"
+  sku                 = "Standard"
 }
