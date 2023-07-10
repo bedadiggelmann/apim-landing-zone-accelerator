@@ -1,18 +1,15 @@
 locals {
-  resource_suffix        = "${var.workload_name}-${var.deployment_environment}-${var.location}"
-  resource_suffix_id     = "001"
-  resource_group_name    = "rg-networking-${local.resource_suffix}"
-  apim_cs_vnet_name      = "vnet-apim-cs-${local.resource_suffix}"
-  apim_gw_vnet_name      = "vnet-apim-gw-${local.resource_suffix}"
-  apim_subnet_name       = "snet-apim-${local.resource_suffix}-${local.resource_suffix_id}"
-  apim_snnsg             = "nsg-apim-${local.resource_suffix}"
-  appgateway_subnet_name = "snet-apgw-${local.resource_suffix}-${local.resource_suffix_id}"
-  appgateway_snnsg       = "nsg-apgw-${local.resource_suffix}"
-  public_ip_address_name = "pip-apimcs-${local.resource_suffix}"
+  apim_cs_vnet_name      = "vnet-apim-cs-${var.resource_suffix}"
+  apim_gw_vnet_name      = "vnet-apim-gw-${var.resource_suffix}"
+  apim_subnet_name       = "snet-apim-${var.resource_suffix}"
+  apim_snnsg             = "nsg-apim-${var.resource_suffix}"
+  appgateway_subnet_name = "snet-apgw-${var.resource_suffix}"
+  appgateway_snnsg       = "nsg-apgw-${var.resource_suffix}"
+  public_ip_address_name = "pip-apimcs-${var.resource_suffix}"
 }
 
 resource "azurerm_resource_group" "networking_resource_group" {
-  name     = local.resource_group_name
+  name     = "rg-networking-${var.resource_suffix}"
   location = var.location
 }
 
@@ -172,7 +169,7 @@ resource "azurerm_network_security_group" "apim_snnsg_nsg" {
 
 resource "azurerm_virtual_network_peering" "peer_apim_gw" {
   name                         = "peer-vnet-gw-with-apim"
-  resource_group_name          = local.resource_group_name
+  resource_group_name          = azurerm_resource_group.networking_resource_group.name
   virtual_network_name         = azurerm_virtual_network.apim_gw_vnet.name
   remote_virtual_network_id    = azurerm_virtual_network.apim_cs_vnet.id
   allow_virtual_network_access = true

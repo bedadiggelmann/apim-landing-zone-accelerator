@@ -3,6 +3,11 @@ variable "workload_name" {
   description = "A short name for the workload being deployed"
 }
 
+variable "resource_suffix" {
+  description = ""
+  type        = string
+}
+
 variable "location" {
   type        = string
   description = ""

@@ -46,6 +46,8 @@ module "networking" {
   location               = local.resource_location
   workload_name          = var.workload_name
   deployment_environment = var.deployment_environment
+  resource_suffix        = module.resource_suffix.name
+
 }
 
 #-------------------------------
