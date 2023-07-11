@@ -5,17 +5,18 @@ locals {
   app_gateway_identity_id  = "identity-${local.app_gateway_name}"
   https_backend_probe_name = "APIM"
   is_local_certificate     = var.app_gateway_certificate_type == "custom"
-  certificate_secret_id    = local.is_local_certificate ? azurerm_key_vault_certificate.kv_domain_certs[0].secret_id : azurerm_key_vault_certificate.local_domain_certs[0].secret_id
+  //certificate_secret_id    = local.is_local_certificate ? azurerm_key_vault_certificate.kv_domain_certs[0].secret_id : azurerm_key_vault_certificate.local_domain_certs[0].secret_id
 }
 
 resource "azurerm_resource_group" "appgw_rg" {
-  name     = "rg-appggw-${var.resource_suffix}"
+  name     = "rg-appgw-${var.resource_suffix}"
   location = var.location
 
   tags = {
     "expireOn" = "2023-07-30"
   }
 }
+/*
 
 resource "azurerm_user_assigned_identity" "user_assigned_identity" {
   resource_group_name = azurerm_resource_group.appgw_rg.name
@@ -255,4 +256,4 @@ resource "azurerm_application_gateway" "network" {
     min_capacity = 2
     max_capacity = 3
   }
-}
+}*/

@@ -53,9 +53,9 @@ module "networking" {
 #-------------------------------
 # calling the App Gateway module
 #-------------------------------
-/*module "application_gateway" {
+module "application_gateway" {
   source                       = "./modules/gateway"
-  resource_suffix              = var.resource_suffix
+  resource_suffix              = module.resource_suffix.name
   location                     = module.apim.apim_resource_group_location
   secret_name                  = var.certificate_secret_name
   keyvault_id                  = module.shared.key_vault_id
@@ -68,4 +68,4 @@ module "networking" {
   depends_on = [
     module.shared
   ]
-}*/
+}

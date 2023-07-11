@@ -11,7 +11,7 @@ locals {
 resource "azurerm_resource_group" "networking_resource_group" {
   name     = "rg-networking-${var.resource_suffix}"
   location = var.location
-  tags = {
+  tags     = {
     "expireOn" = "2023-07-30"
   }
 }
@@ -170,13 +170,22 @@ resource "azurerm_network_security_group" "apim_snnsg_nsg" {
 
 }
 
-resource "azurerm_virtual_network_peering" "peer_apim_gw" {
+resource "azurerm_virtual_network_peering" "peer_gw_apim" {
   name                         = "peer-vnet-gw-with-apim"
+  resource_group_name          = azurerm_resource_group.networking_resource_group.name
+  virtual_network_name         = azurerm_virtual_network.apim_cs_vnet.name
+  remote_virtual_network_id    = azurerm_virtual_network.apim_gw_vnet.id
+  allow_virtual_network_access = true
+}
+
+resource "azurerm_virtual_network_peering" "peer_apim_gw" {
+  name                         = "peer-vnet-apim-with-gw"
   resource_group_name          = azurerm_resource_group.networking_resource_group.name
   virtual_network_name         = azurerm_virtual_network.apim_gw_vnet.name
   remote_virtual_network_id    = azurerm_virtual_network.apim_cs_vnet.id
   allow_virtual_network_access = true
 }
+
 
 //Public IP
 resource "azurerm_public_ip" "apim_public_ip" {
