@@ -53,11 +53,10 @@ module "networking" {
 #-------------------------------
 # calling the App Gateway module
 #-------------------------------
-module "application_gateway" {
+/*module "application_gateway" {
   source                       = "./modules/gateway"
   resource_suffix              = var.resource_suffix
-  resource_group_name          = module.apim.apim_resource_group_name
-  resource_group_location      = module.apim.apim_resource_group_location
+  location                     = module.apim.apim_resource_group_location
   secret_name                  = var.certificate_secret_name
   keyvault_id                  = module.shared.key_vault_id
   app_gateway_certificate_type = var.app_gateway_certificate_type
@@ -66,8 +65,7 @@ module "application_gateway" {
   fqdn                         = var.app_gateway_fqdn
   primary_backend_fqdn         = "${module.apim.name}.azure-api.net"
   subnet_id                    = module.networking.appgateway_subnet_id
-
   depends_on = [
     module.shared
   ]
-}
+}*/

@@ -1,9 +1,4 @@
-variable "resource_group_name" {
-  type        = string
-  description = ""
-}
-
-variable "resource_group_location" {
+variable "location" {
   type        = string
   description = ""
 }

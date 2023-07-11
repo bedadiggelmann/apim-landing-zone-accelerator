@@ -1,5 +1,6 @@
 locals {
   app_gateway_name         = "appgw-${var.resource_suffix}"
+  resource_group_name      = "rg-${local.app_gateway_name}"
   app_gateway_primary_pip  = "pip-${local.app_gateway_name}"
   app_gateway_identity_id  = "identity-${local.app_gateway_name}"
   https_backend_probe_name = "APIM"
@@ -7,9 +8,18 @@ locals {
   certificate_secret_id    = local.is_local_certificate ? azurerm_key_vault_certificate.kv_domain_certs[0].secret_id : azurerm_key_vault_certificate.local_domain_certs[0].secret_id
 }
 
+resource "azurerm_resource_group" "appgw_rg" {
+  name     = "rg-appggw-${var.resource_suffix}"
+  location = var.location
+
+  tags = {
+    "expireOn" = "2023-07-30"
+  }
+}
+
 resource "azurerm_user_assigned_identity" "user_assigned_identity" {
-  resource_group_name = var.resource_group_name
-  location            = var.resource_group_location
+  resource_group_name = azurerm_resource_group.appgw_rg.name
+  location            = var.location
 
   name = local.app_gateway_identity_id
 }
@@ -95,7 +105,7 @@ resource "azurerm_key_vault_certificate" "local_domain_certs" {
 
     x509_certificate_properties {
       extended_key_usage = ["1.3.6.1.5.5.7.3.1"]
-      key_usage = [
+      key_usage          = [
         "digitalSignature",
         "keyEncipherment"
       ]

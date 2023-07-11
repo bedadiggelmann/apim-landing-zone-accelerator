@@ -11,6 +11,9 @@ locals {
 resource "azurerm_resource_group" "networking_resource_group" {
   name     = "rg-networking-${var.resource_suffix}"
   location = var.location
+  tags = {
+    "expireOn" = "2023-07-30"
+  }
 }
 
 //Vnet
