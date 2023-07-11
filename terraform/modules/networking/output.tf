@@ -6,6 +6,10 @@ output "apim_cs_vnet_id" {
   value = azurerm_virtual_network.apim_cs_vnet.id
 }
 
+output "apim_gw_vnet_id" {
+  value = azurerm_virtual_network.apim_gw_vnet.id
+}
+
 output "apim_subnet_id" {
   value = "${azurerm_virtual_network.apim_cs_vnet.id}/subnets/${local.apim_subnet_name}"
 }

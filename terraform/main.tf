@@ -24,6 +24,7 @@ module "shared" {
   private_ip_address = module.apim.private_ip_addresses
   apim_name          = module.apim.name
   apim_vnet_id       = module.networking.apim_cs_vnet_id
+  gw_vnet_id         = module.networking.apim_gw_vnet_id
 }
 
 #-------------------------------
@@ -65,7 +66,7 @@ module "application_gateway" {
   fqdn                         = var.app_gateway_fqdn
   primary_backend_fqdn         = "${module.apim.name}.azure-api.net"
   subnet_id                    = module.networking.appgateway_subnet_id
-  depends_on = [
+  depends_on                   = [
     module.shared
   ]
 }

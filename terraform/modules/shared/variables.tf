@@ -52,3 +52,7 @@ variable "apim_name" {
 variable "apim_vnet_id" {
   description = "APIM vnet id"
 }
+
+variable "gw_vnet_id" {
+  description = "gw vnet id"
+}
