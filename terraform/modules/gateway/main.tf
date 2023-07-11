@@ -5,7 +5,7 @@ locals {
   app_gateway_identity_id  = "identity-${local.app_gateway_name}"
   https_backend_probe_name = "APIM"
   is_local_certificate     = var.app_gateway_certificate_type == "custom"
-  //certificate_secret_id    = local.is_local_certificate ? azurerm_key_vault_certificate.kv_domain_certs[0].secret_id : azurerm_key_vault_certificate.local_domain_certs[0].secret_id
+  certificate_secret_id    = local.is_local_certificate ? azurerm_key_vault_certificate.kv_domain_certs[0].secret_id : azurerm_key_vault_certificate.local_domain_certs[0].secret_id
 }
 
 resource "azurerm_resource_group" "appgw_rg" {
@@ -16,7 +16,7 @@ resource "azurerm_resource_group" "appgw_rg" {
     "expireOn" = "2023-07-30"
   }
 }
-/*
+
 
 resource "azurerm_user_assigned_identity" "user_assigned_identity" {
   resource_group_name = azurerm_resource_group.appgw_rg.name
@@ -73,6 +73,8 @@ resource "azurerm_key_vault_certificate" "kv_domain_certs" {
   }
 }
 
+
+
 resource "azurerm_key_vault_certificate" "local_domain_certs" {
   count        = !local.is_local_certificate ? 1 : 0
   name         = "generated-cert"
@@ -116,10 +118,11 @@ resource "azurerm_key_vault_certificate" "local_domain_certs" {
   }
 }
 
+
 resource "azurerm_public_ip" "public_ip" {
   name                = local.app_gateway_primary_pip
-  resource_group_name = var.resource_group_name
-  location            = var.resource_group_location
+  resource_group_name = azurerm_resource_group.appgw_rg.name
+  location            = var.location
   sku                 = "Standard"
   ip_version          = "IPv4"
   allocation_method   = "Static"
@@ -127,8 +130,8 @@ resource "azurerm_public_ip" "public_ip" {
 
 resource "azurerm_application_gateway" "network" {
   name                = local.app_gateway_name
-  resource_group_name = var.resource_group_name
-  location            = var.resource_group_location
+  resource_group_name = azurerm_resource_group.appgw_rg.name
+  location            = var.location
 
   depends_on = [
     azurerm_key_vault_access_policy.user_assigned_identity_keyvault_permissions,
@@ -256,4 +259,4 @@ resource "azurerm_application_gateway" "network" {
     min_capacity = 2
     max_capacity = 3
   }
-}*/
+}

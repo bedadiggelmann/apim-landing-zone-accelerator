@@ -34,7 +34,7 @@ locals {
 }
 
 
-/*# Created as a seperate resource, as managed identity uses the azurerm_key_vault_access_policy as well. See note at https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy
+# Created as a seperate resource, as managed identity uses the azurerm_key_vault_access_policy as well. See note at https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy
 resource "azurerm_key_vault_access_policy" "deployment_spn_access_policy" {
   for_each     = local.deployment_client_ids
   key_vault_id = azurerm_key_vault.key_vault.id
@@ -59,4 +59,4 @@ resource "azurerm_key_vault_access_policy" "deployment_spn_access_policy" {
     "Update",
     "Create"
   ]
-}*/
+}

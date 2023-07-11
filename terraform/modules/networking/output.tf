@@ -11,6 +11,6 @@ output "apim_subnet_id" {
 }
 
 output "appgateway_subnet_id" {
-  value = "${azurerm_virtual_network.apim_cs_vnet.id}/subnets/${local.appgateway_subnet_name}"
+  value = "${azurerm_virtual_network.apim_gw_vnet.id}/subnets/${local.appgateway_subnet_name}"
 }
 
