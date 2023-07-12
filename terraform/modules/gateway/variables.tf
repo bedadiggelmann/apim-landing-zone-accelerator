@@ -44,7 +44,6 @@ variable "fqdn" {
 variable "primary_backend_fqdn" {
   type        = string
   description = ""
-  default     = "api-internal.example.com"
 }
 
 variable "probe_url" {

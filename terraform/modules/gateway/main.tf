@@ -184,10 +184,9 @@ resource "azurerm_application_gateway" "network" {
     port                                = 80
     protocol                            = "Http"
     cookie_based_affinity               = "Disabled"
-    pick_host_name_from_backend_address = false
+    pick_host_name_from_backend_address = true
     affinity_cookie_name                = "ApplicationGatewayAffinity"
     request_timeout                     = 20
-
   }
 
   backend_http_settings {
@@ -195,8 +194,7 @@ resource "azurerm_application_gateway" "network" {
     port                                = 443
     protocol                            = "Https"
     cookie_based_affinity               = "Disabled"
-    host_name                           = var.primary_backend_fqdn
-    pick_host_name_from_backend_address = false
+    pick_host_name_from_backend_address = true
     request_timeout                     = 20
     probe_name                          = local.https_backend_probe_name
   }
