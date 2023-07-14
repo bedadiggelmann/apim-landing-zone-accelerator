@@ -33,6 +33,11 @@ resource "azurerm_private_dns_zone" "scm" {
   resource_group_name = azurerm_resource_group.shared_rg.name
 }
 
+resource "azurerm_private_dns_zone" "gateway_public_ip" {
+  name                = "westeurope.cloudapp.azure.com"
+  resource_group_name = azurerm_resource_group.shared_rg.name
+}
+
 #-------------------------------
 # A records for the DNS zones
 #-------------------------------
@@ -53,7 +58,7 @@ resource "azurerm_private_dns_a_record" "dev_portal_record" {
 }
 
 resource "azurerm_private_dns_a_record" "new_dev_portal_record" {
-  name                = "developer"
+  name                = var.apim_name
   zone_name           = azurerm_private_dns_zone.new_dev_portal.name
   resource_group_name = azurerm_resource_group.shared_rg.name
   ttl                 = 300
@@ -76,6 +81,14 @@ resource "azurerm_private_dns_a_record" "scm_record" {
   records             = var.private_ip_address
 }
 
+resource "azurerm_private_dns_a_record" "gateway_ip_record" {
+  name                = "ipt-apim"
+  zone_name           = azurerm_private_dns_zone.gateway_public_ip.name
+  resource_group_name = azurerm_resource_group.shared_rg.name
+  ttl                 = 36000
+  records             = var.private_ip_address
+}
+
 #-------------------------------
 # Vnet links
 #-------------------------------
@@ -90,6 +103,13 @@ resource "azurerm_private_dns_zone_virtual_network_link" "gateway_vnetlink" {
   name                  = "gateway-vnet-link"
   resource_group_name   = azurerm_resource_group.shared_rg.name
   private_dns_zone_name = azurerm_private_dns_zone.gateway.name
+  virtual_network_id    = var.gw_vnet_id
+}
+
+resource "azurerm_private_dns_zone_virtual_network_link" "gateway_ip_vnetlink" {
+  name                  = "gateway-ip-vnet-link"
+  resource_group_name   = azurerm_resource_group.shared_rg.name
+  private_dns_zone_name = azurerm_private_dns_zone.gateway_public_ip.name
   virtual_network_id    = var.gw_vnet_id
 }
 

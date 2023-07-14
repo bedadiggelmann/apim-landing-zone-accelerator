@@ -4,6 +4,7 @@ locals {
   app_gateway_primary_pip  = "pip-${local.app_gateway_name}"
   app_gateway_identity_id  = "identity-${local.app_gateway_name}"
   https_backend_probe_name = "APIM"
+  devportal_name           = "devportal"
   is_local_certificate     = var.app_gateway_certificate_type == "custom"
   certificate_secret_id    = local.is_local_certificate ? azurerm_key_vault_certificate.kv_domain_certs[0].secret_id : azurerm_key_vault_certificate.local_domain_certs[0].secret_id
 }
@@ -74,7 +75,6 @@ resource "azurerm_key_vault_certificate" "kv_domain_certs" {
 }
 
 
-
 resource "azurerm_key_vault_certificate" "local_domain_certs" {
   count        = !local.is_local_certificate ? 1 : 0
   name         = "generated-cert"
@@ -121,6 +121,7 @@ resource "azurerm_key_vault_certificate" "local_domain_certs" {
 
 resource "azurerm_public_ip" "public_ip" {
   name                = local.app_gateway_primary_pip
+  domain_name_label   = "ipt-apim"
   resource_group_name = azurerm_resource_group.appgw_rg.name
   location            = var.location
   sku                 = "Standard"
@@ -179,14 +180,31 @@ resource "azurerm_application_gateway" "network" {
     fqdns = [var.primary_backend_fqdn]
   }
 
+  backend_address_pool {
+    fqdns = ["apim-test-dev-westeurope-001.developer.azure-api.net"]
+    name  = "devportal"
+  }
+
+
   backend_http_settings {
     name                                = "default"
     port                                = 80
     protocol                            = "Http"
     cookie_based_affinity               = "Disabled"
-    pick_host_name_from_backend_address = true
+    pick_host_name_from_backend_address = false
     affinity_cookie_name                = "ApplicationGatewayAffinity"
     request_timeout                     = 20
+  }
+
+  backend_http_settings {
+    name                                = local.devportal_name
+    port                                = 443
+    protocol                            = "Https"
+    cookie_based_affinity               = "Disabled"
+    host_name                           = "apim-test-dev-westeurope-001.developer.azure-api.net"
+    pick_host_name_from_backend_address = false
+    request_timeout                     = 20
+    probe_name                          = local.devportal_name
   }
 
   backend_http_settings {
@@ -194,7 +212,8 @@ resource "azurerm_application_gateway" "network" {
     port                                = 443
     protocol                            = "Https"
     cookie_based_affinity               = "Disabled"
-    pick_host_name_from_backend_address = true
+    host_name                           = var.primary_backend_fqdn
+    pick_host_name_from_backend_address = false
     request_timeout                     = 20
     probe_name                          = local.https_backend_probe_name
   }
@@ -225,11 +244,36 @@ resource "azurerm_application_gateway" "network" {
     priority                   = 100
   }
 
+  request_routing_rule {
+    name                       = local.devportal_name
+    rule_type                  = "Basic"
+    http_listener_name         = "default"
+    backend_address_pool_name  = local.devportal_name
+    backend_http_settings_name = local.devportal_name
+    priority                   = 200
+  }
+
   probe {
-    name                                      = "APIM"
+    name                                      = local.https_backend_probe_name
     protocol                                  = "Https"
     host                                      = var.primary_backend_fqdn
     path                                      = var.probe_url
+    interval                                  = 30
+    timeout                                   = 30
+    unhealthy_threshold                       = 3
+    pick_host_name_from_backend_http_settings = false
+    minimum_servers                           = 0
+
+    match {
+      status_code = ["200-399"]
+    }
+  }
+
+  probe {
+    name                                      = local.devportal_name
+    protocol                                  = "Https"
+    host                                      = "apim-test-dev-westeurope-001.developer.azure-api.net"
+    path                                      = "/signin"
     interval                                  = 30
     timeout                                   = 30
     unhealthy_threshold                       = 3
