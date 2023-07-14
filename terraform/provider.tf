@@ -14,7 +14,7 @@ terraform {
   }
 }
 
-# Configure the Microsft Azure provider (Service Principal)
+# Configure the Microsoft Azure provider (Service Principal)
 provider "azurerm" {
   features {}
   # subscription_id = var.subscription_id

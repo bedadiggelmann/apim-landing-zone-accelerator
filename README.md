@@ -1,15 +1,30 @@
-# Enterprise-Scale-APIM
+# Sample-Setup Application Gateway and APIM
 
-This is a repository ([aka.ms/EnterpriseScale-APIM](https://aka.ms/EnterpriseScale-APIM)) that contains both enterprise architecture (proven recommendations and considerations) and reference implementaion (deployable artifacts for a common implementations).
+This project is based on the [Microsoft APIM Landing Zone Accelerator](https://github.com/Azure/apim-landing-zone-accelerator). 
+It represents a sample setup of an Application Gateway deployed in vnet `vnet-apim-gw-test-dev-westeurope-001
+` which is peered with vnet `vnet-apim-cs-test-dev-westeurope-001` containing an Azure APIM instance. 
+The main goal of this project to gain experience in connecting the Application Gateway with an internally deployed APIM instance and route requests from the internet to the correct endpoints.
 
-## Enterprise-Scale Architecture
+## How to deploy
 
-The enterprise architecture is broken down into six different design areas, where you can find the links to each at:
-| Design Area|Considerations|Recommendations|
-|:--------------:|:--------------:|:--------------:|
-| Identity and Access Management|[Design Considerations](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/app-platform/api-management/identity-and-access-management#design-considerations)|[Design Recommendations](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/app-platform/api-management/identity-and-access-management#design-recommendations)|
-| Network Topology and Connectivity|[Design Considerations](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/app-platform/api-management/network-topology-and-connectivity#design-considerations)|[Design Recommendations](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/app-platform/api-management/network-topology-and-connectivity#design-recommendations)|
-| Security|[Design Considerations](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/app-platform/api-management/security#design-considerations)|[Design Recommendations](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/app-platform/api-management/security#design-recommendations)|
-| Management|[Design Considerations](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/app-platform/api-management/management#design-considerations)|[Design Recommendations](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/app-platform/api-management/management#design-recommendation)|
-| Governance|[Design Considerations](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/app-platform/api-management/governance#design-considerations)|[Design Recommendations](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/app-platform/api-management/governance#design-recommendations)|
-| Platform Automation and DevOps|[Design Considerations](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/app-platform/api-management/platform-automation-and-devops#design-considerations)|[Design Recommendations](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/app-platform/api-management/platform-automation-and-devops#design-recommendations)|
+The configuration is intended to be deployed in the ipt Sandbox subscription: https://portal.azure.com/#@iptzug.onmicrosoft.com/resource/subscriptions/da12d467-03ae-4675-aa29-d3b26fdbd2cc/
+
+
+### Local machine
+
+1. `cd terraform`
+2. `terraform init -backend-config=backend.dev.hcl`
+3. `terraform apply`
+
+### Azure Devops
+Run pipeline https://dev.azure.com/apim-testing/apim-testing/_build?definitionId=6&_a=summary. 
+Select the `DEV` environment.  
+
+## How to test
+### Developer Portal
+The developer portal is exposed at http://ipt-apim.westeurope.cloudapp.azure.com/ (http).
+
+### Gateway
+The gateway is exposed at https://ipt-apim.westeurope.cloudapp.azure.com/ (https). 
+The conference sample API is exposed by the gateway.
+It can be tested with a GET (using curl or postman or similar tools) request to https://ipt-apim.westeurope.cloudapp.azure.com/conference/v2/sessions
