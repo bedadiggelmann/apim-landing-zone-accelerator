@@ -57,6 +57,7 @@ resource "azurerm_key_vault_access_policy" "deployment_spn_access_policy" {
     "Get",
     "List",
     "Update",
-    "Create"
+    "Create",
+    "Recover"
   ]
 }
