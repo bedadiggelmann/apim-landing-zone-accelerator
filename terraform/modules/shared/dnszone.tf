@@ -33,11 +33,6 @@ resource "azurerm_private_dns_zone" "scm" {
   resource_group_name = azurerm_resource_group.shared_rg.name
 }
 
-resource "azurerm_private_dns_zone" "gateway_public_ip" {
-  name                = "westeurope.cloudapp.azure.com"
-  resource_group_name = azurerm_resource_group.shared_rg.name
-}
-
 #-------------------------------
 # A records for the DNS zones
 #-------------------------------
