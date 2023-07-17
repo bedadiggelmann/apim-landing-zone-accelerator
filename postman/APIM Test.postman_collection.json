@@ -1,0 +1,51 @@
+{
+	"info": {
+		"_postman_id": "b142d582-0139-4c44-b06f-db923d8e1eaa",
+		"name": "APIM Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22546735"
+	},
+	"item": [
+		{
+			"name": "https://ipt-apim.westeurope.cloudapp.azure.com/conference/v2/sessions",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "a9f08d322748414e9a6da53b564fe4ef",
+						"type": "default"
+					},
+					{
+						"key": "Ocp-Apim-Trace",
+						"value": "true",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "Content",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://ipt-apim.westeurope.cloudapp.azure.com/conference/v2/sessions",
+					"protocol": "https",
+					"host": [
+						"ipt-apim",
+						"westeurope",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"conference",
+						"v2",
+						"sessions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -26,5 +26,6 @@ The developer portal is exposed at http://ipt-apim.westeurope.cloudapp.azure.com
 
 ### Gateway
 The gateway is exposed at https://ipt-apim.westeurope.cloudapp.azure.com/ (https). 
-The conference sample API is exposed by the gateway.
-It can be tested with a GET (using curl or postman or similar tools) request to https://ipt-apim.westeurope.cloudapp.azure.com/conference/v2/sessions
+The conference sample API https://conferenceapi.azurewebsites.net/ is exposed by the gateway.
+It can be tested with a GET (using curl or postman or similar tools) request to https://ipt-apim.westeurope.cloudapp.azure.com/conference/v2/sessions.
+A Postman collection containing a sample config can be found in folder /postman.
