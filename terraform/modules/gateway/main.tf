@@ -26,24 +26,24 @@ resource "azurerm_user_assigned_identity" "user_assigned_identity" {
   name = local.app_gateway_identity_id
 }
 
-#resource "azurerm_key_vault_access_policy" "user_assigned_identity_keyvault_permissions" {
-#  key_vault_id = var.keyvault_id
-#  tenant_id    = azurerm_user_assigned_identity.user_assigned_identity.tenant_id
-#  object_id    = azurerm_user_assigned_identity.user_assigned_identity.principal_id
-#
-#  certificate_permissions = [
-#    "Import",
-#    "Get",
-#    "List",
-#    "Update",
-#    "Create"
-#  ]
-#
-#  secret_permissions = [
-#    "Get",
-#    "List",
-#  ]
-#}
+resource "azurerm_key_vault_access_policy" "user_assigned_identity_keyvault_permissions" {
+  key_vault_id = var.keyvault_id
+  tenant_id    = azurerm_user_assigned_identity.user_assigned_identity.tenant_id
+  object_id    = azurerm_user_assigned_identity.user_assigned_identity.principal_id
+
+  certificate_permissions = [
+    "Import",
+    "Get",
+    "List",
+    "Update",
+    "Create"
+  ]
+
+  secret_permissions = [
+    "Get",
+    "List",
+  ]
+}
 
 resource "azurerm_key_vault_certificate" "kv_domain_certs" {
   count        = local.is_local_certificate ? 1 : 0
