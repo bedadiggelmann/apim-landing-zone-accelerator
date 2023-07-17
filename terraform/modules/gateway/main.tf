@@ -135,7 +135,7 @@ resource "azurerm_application_gateway" "network" {
   location            = var.location
 
   depends_on = [
-    azurerm_key_vault_access_policy.user_assigned_identity_keyvault_permissions,
+#    azurerm_key_vault_access_policy.user_assigned_identity_keyvault_permissions,
     azurerm_key_vault_certificate.kv_domain_certs
   ]
 
