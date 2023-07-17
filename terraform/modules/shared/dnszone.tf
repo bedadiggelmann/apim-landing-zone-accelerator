@@ -79,25 +79,12 @@ resource "azurerm_private_dns_a_record" "scm_record" {
 #-------------------------------
 # Vnet links
 #-------------------------------
-resource "azurerm_private_dns_zone_virtual_network_link" "apim_vnetlink" {
-  name                  = "apim-vnet-link"
-  resource_group_name   = azurerm_resource_group.shared_rg.name
-  private_dns_zone_name = azurerm_private_dns_zone.gateway.name
-  virtual_network_id    = var.apim_vnet_id
-}
 
 resource "azurerm_private_dns_zone_virtual_network_link" "gateway_vnetlink" {
   name                  = "gateway-vnet-link"
   resource_group_name   = azurerm_resource_group.shared_rg.name
   private_dns_zone_name = azurerm_private_dns_zone.gateway.name
   virtual_network_id    = var.gw_vnet_id
-}
-
-resource "azurerm_private_dns_zone_virtual_network_link" "dev_portal_vnetlink" {
-  name                  = "portal-vnet-link"
-  resource_group_name   = azurerm_resource_group.shared_rg.name
-  private_dns_zone_name = azurerm_private_dns_zone.dev_portal.name
-  virtual_network_id    = var.apim_vnet_id
 }
 
 resource "azurerm_private_dns_zone_virtual_network_link" "gateway_portal_vnetlink" {
@@ -107,13 +94,6 @@ resource "azurerm_private_dns_zone_virtual_network_link" "gateway_portal_vnetlin
   virtual_network_id    = var.gw_vnet_id
 }
 
-resource "azurerm_private_dns_zone_virtual_network_link" "new_dev_portal_vnetlink" {
-  name                  = "dev-portal-vnet-link"
-  resource_group_name   = azurerm_resource_group.shared_rg.name
-  private_dns_zone_name = azurerm_private_dns_zone.new_dev_portal.name
-  virtual_network_id    = var.apim_vnet_id
-}
-
 resource "azurerm_private_dns_zone_virtual_network_link" "new_dev_portal_gw_vnetlink" {
   name                  = "dev-portal-gw-vnet-link"
   resource_group_name   = azurerm_resource_group.shared_rg.name
@@ -121,23 +101,9 @@ resource "azurerm_private_dns_zone_virtual_network_link" "new_dev_portal_gw_vnet
   virtual_network_id    = var.gw_vnet_id
 }
 
-resource "azurerm_private_dns_zone_virtual_network_link" "mgmt_vnetlink" {
-  name                  = "mgmt-vnet-link"
-  resource_group_name   = azurerm_resource_group.shared_rg.name
-  private_dns_zone_name = azurerm_private_dns_zone.mgmt_portal.name
-  virtual_network_id    = var.apim_vnet_id
-}
-
 resource "azurerm_private_dns_zone_virtual_network_link" "mgmt_gw_vnetlink" {
   name                  = "mgmt-gw-vnet-link"
   resource_group_name   = azurerm_resource_group.shared_rg.name
   private_dns_zone_name = azurerm_private_dns_zone.mgmt_portal.name
   virtual_network_id    = var.gw_vnet_id
-}
-
-resource "azurerm_private_dns_zone_virtual_network_link" "scm_vnetlink" {
-  name                  = "scm-vnet-link"
-  resource_group_name   = azurerm_resource_group.shared_rg.name
-  private_dns_zone_name = azurerm_private_dns_zone.scm.name
-  virtual_network_id    = var.apim_vnet_id
 }
