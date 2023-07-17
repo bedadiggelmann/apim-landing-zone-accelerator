@@ -1,0 +1,251 @@
+{
+  "serviceName": "apim-test-dev-westeurope-001",
+  "traceId": "dd98ca33-c732-46c1-a601-077e147ba267",
+  "traceEntries": {
+    "inbound": [
+      {
+        "source": "api-inspector",
+        "timestamp": "2023-07-12T12:45:40.8438767Z",
+        "elapsed": "00:00:00.0002384",
+        "data": {
+          "request": {
+            "method": "GET",
+            "url": "https://apim-test-dev-westeurope-001.azure-api.net/conference/v2/sessions",
+            "headers": [
+              {
+                "name": "X-FORWARDED-PROTO",
+                "value": "https"
+              },
+              {
+                "name": "X-FORWARDED-PORT",
+                "value": "443"
+              },
+              {
+                "name": "X-Forwarded-For",
+                "value": "194.209.6.201:62491"
+              },
+              {
+                "name": "X-Original-URL",
+                "value": "/conference/v2/sessions"
+              },
+              {
+                "name": "X-AppGW-Trace-Id",
+                "value": "e70c2aa2ad927856bf5d033b04322dc6"
+              },
+              {
+                "name": "X-ORIGINAL-HOST",
+                "value": "20.229.9.190"
+              },
+              {
+                "name": "Ocp-Apim-Subscription-Key",
+                "value": "a9f08d322748414e9a6da53b564fe4ef"
+              },
+              {
+                "name": "Content",
+                "value": "application/json"
+              },
+              {
+                "name": "Postman-Token",
+                "value": "252acd7b-f128-4f15-a98e-57c7103f47d4"
+              },
+              {
+                "name": "Connection",
+                "value": "keep-alive"
+              },
+              {
+                "name": "Accept",
+                "value": "*/*"
+              },
+              {
+                "name": "Accept-Encoding",
+                "value": "gzip,deflate,br"
+              },
+              {
+                "name": "Host",
+                "value": "apim-test-dev-westeurope-001.azure-api.net:443"
+              },
+              {
+                "name": "User-Agent",
+                "value": "PostmanRuntime/7.32.3"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "source": "api-inspector",
+        "timestamp": "2023-07-12T12:45:40.8438767Z",
+        "elapsed": "00:00:00.0002412",
+        "data": {
+          "configuration": {
+            "api": {
+              "from": "/conference",
+              "to": {
+                "scheme": "https",
+                "host": "conferenceapi.azurewebsites.net",
+                "port": 443,
+                "path": "/",
+                "queryString": "",
+                "query": {},
+                "isDefaultPort": true
+              },
+              "version": "v2",
+              "revision": "2"
+            },
+            "operation": {
+              "method": "GET",
+              "uriTemplate": "/sessions"
+            },
+            "user": "-",
+            "product": "-"
+          }
+        }
+      },
+      {
+        "source": "cors",
+        "timestamp": "2023-07-12T12:45:40.8438767Z",
+        "elapsed": "00:00:00.0002613",
+        "data": "Origin header was missing or empty and the request was classified as not cross-domain. CORS policy was not applied."
+      },
+      {
+        "source": "cors",
+        "timestamp": "2023-07-12T12:45:40.8438767Z",
+        "elapsed": "00:00:00.0002632",
+        "data": "Origin header was missing or empty and the request was classified as not cross-domain. CORS policy was not applied."
+      }
+    ],
+    "backend": [
+      {
+        "source": "forward-request",
+        "timestamp": "2023-07-12T12:45:41.6358138Z",
+        "elapsed": "00:00:00.7773360",
+        "data": {
+          "message": "Request is being forwarded to the backend service. Timeout set to 300 seconds",
+          "request": {
+            "method": "GET",
+            "url": "https://conferenceapi.azurewebsites.net/sessions",
+            "headers": [
+              {
+                "name": "Host",
+                "value": "conferenceapi.azurewebsites.net"
+              },
+              {
+                "name": "X-FORWARDED-PROTO",
+                "value": "https"
+              },
+              {
+                "name": "X-FORWARDED-PORT",
+                "value": "443"
+              },
+              {
+                "name": "X-Forwarded-For",
+                "value": "194.209.6.201:62491,10.2.1.4"
+              },
+              {
+                "name": "X-Original-URL",
+                "value": "/conference/v2/sessions"
+              },
+              {
+                "name": "X-AppGW-Trace-Id",
+                "value": "e70c2aa2ad927856bf5d033b04322dc6"
+              },
+              {
+                "name": "X-ORIGINAL-HOST",
+                "value": "20.229.9.190"
+              },
+              {
+                "name": "Ocp-Apim-Subscription-Key",
+                "value": "a9f08d322748414e9a6da53b564fe4ef"
+              },
+              {
+                "name": "Content",
+                "value": "application/json"
+              },
+              {
+                "name": "Postman-Token",
+                "value": "252acd7b-f128-4f15-a98e-57c7103f47d4"
+              },
+              {
+                "name": "Accept",
+                "value": "*/*"
+              },
+              {
+                "name": "Accept-Encoding",
+                "value": "gzip,deflate,br"
+              },
+              {
+                "name": "User-Agent",
+                "value": "PostmanRuntime/7.32.3"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "source": "forward-request",
+        "timestamp": "2023-07-12T12:45:42.8207572Z",
+        "elapsed": "00:00:01.9754102",
+        "data": {
+          "response": {
+            "status": {
+              "code": 200,
+              "reason": "OK"
+            },
+            "headers": [
+              {
+                "name": "Pragma",
+                "value": "no-cache"
+              },
+              {
+                "name": "Content-Length",
+                "value": "102367"
+              },
+              {
+                "name": "Cache-Control",
+                "value": "no-cache"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/vnd.collection+json"
+              },
+              {
+                "name": "Date",
+                "value": "Wed, 12 Jul 2023 12:45:42 GMT"
+              },
+              {
+                "name": "Expires",
+                "value": "-1"
+              },
+              {
+                "name": "Set-Cookie",
+                "value": "ARRAffinity=13eafd2bf3d2dd801c134fca7b2cabace2e1fe63c034e744ae40f40a43e61c9c;Path=/;HttpOnly;Secure;Domain=conferenceapi.azurewebsites.net,ARRAffinitySameSite=13eafd2bf3d2dd801c134fca7b2cabace2e1fe63c034e744ae40f40a43e61c9c;Path=/;HttpOnly;SameSite=None;Secure;Domain=conferenceapi.azurewebsites.net"
+              },
+              {
+                "name": "Server",
+                "value": "Microsoft-IIS/10.0"
+              },
+              {
+                "name": "X-AspNet-Version",
+                "value": "4.0.30319"
+              },
+              {
+                "name": "X-Powered-By",
+                "value": "ASP.NET"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "outbound": [
+      {
+        "source": "transfer-response",
+        "timestamp": "2023-07-12T12:45:43.1176351Z",
+        "elapsed": "00:00:02.2633659",
+        "data": {
+          "message": "Response has been sent to the caller in full"
+        }
+      }
+    ]
+  }
+}
