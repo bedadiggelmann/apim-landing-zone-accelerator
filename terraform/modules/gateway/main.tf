@@ -14,7 +14,7 @@ resource "azurerm_resource_group" "appgw_rg" {
   location = var.location
 
   tags = {
-    "expireOn" = "2023-07-30"
+    "expireOn" = "2023-08-30"
   }
 }
 
@@ -108,7 +108,7 @@ resource "azurerm_key_vault_certificate" "local_domain_certs" {
 
     x509_certificate_properties {
       extended_key_usage = ["1.3.6.1.5.5.7.3.1"]
-      key_usage          = [
+      key_usage = [
         "digitalSignature",
         "keyEncipherment"
       ]
@@ -135,7 +135,7 @@ resource "azurerm_application_gateway" "network" {
   location            = var.location
 
   depends_on = [
-#    azurerm_key_vault_access_policy.user_assigned_identity_keyvault_permissions,
+    #    azurerm_key_vault_access_policy.user_assigned_identity_keyvault_permissions,
     azurerm_key_vault_certificate.kv_domain_certs
   ]
 
