@@ -6,7 +6,7 @@ resource "azurerm_resource_group" "apim_internal_rg" {
   location = var.location
 
   tags = {
-    "expireOn" = "2023-07-30"
+    "expireOn" = "2023-08-30"
   }
 }
 
