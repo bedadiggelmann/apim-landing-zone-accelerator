@@ -66,7 +66,8 @@ module "application_gateway" {
   fqdn                         = var.app_gateway_fqdn
   primary_backend_fqdn         = "${module.apim.name}.azure-api.net"
   subnet_id                    = module.networking.appgateway_subnet_id
-  depends_on                   = [
-    module.shared
+  depends_on = [
+    module.shared,
+    module.apim
   ]
 }
